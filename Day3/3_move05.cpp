@@ -38,7 +38,7 @@ int main()
 	Cat c1("nabi", 2);
 	Cat c2 = c1; 			// 복사 생성자가 호출
 	Cat c3 = foo();			// move 생성자가 호출
-	Cat c4 = static_cast<Cat&&>(c2);			// lvalue를 rvalue로 캐스티앻서 move 생성자 호출되도록
+	Cat c4 = static_cast<Cat&&>(c2);			// lvalue를 rvalue로 캐스팅해서 move 생성자 호출되도록
 	Cat c5 = std::move(c3);			// 이 함수가 하는 일이 위처럼 캐스팅을 하는 것 입니다. ,, "std::move = static_cast<Cat&&>"
 									// move 생성자를 안만들어 뒀으면 std::move(c3)를 rvalue로 타입캐스팅을 해서 넘겨주더라도 move 생성자가 호출되는 것이 아니다.
 									// constant lvalue reference 로 만들어둔 복사생성자가 있으니까, 복사생성자가 호출될 것 이다.

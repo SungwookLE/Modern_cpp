@@ -18,7 +18,7 @@ int main()
 	// 컴파일 과정에서 레퍼런스의 레퍼런스는 에러가 아닙니다.
 	// => reference collapsing 규칙으로 계산됩니다.
 
-	// reference collapsing
+/*	|||||||||||||||||| reference collapsing */
 	LREF& r3 = n ;	// int&	&		=> int&
 	RREF& r4 = n ;	// int&& &		=> int&
 	LREF&& r5 = n ; // int& &&		=> int&

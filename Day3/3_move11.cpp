@@ -12,7 +12,10 @@ public:
 int main()
 {
 	Object o1;
-	Object o2 = std::move(o1);	
+	Object o2 = std::move(o1);	// ??
+
+	const Object o3;
+	Object o4 = std::move(o3); // ??
 }
 
 

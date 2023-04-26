@@ -11,10 +11,10 @@ private:
 	int age;
 
 public:
-	// 规过 1. call by value
-	void set_name(std::string n) { name = n; }
-
+	// 规过 1. const lvalue reference
+	void set_name(const std::string& n) { name = n; }
 };
+
 
 int main()
 {

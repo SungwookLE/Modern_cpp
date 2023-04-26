@@ -25,9 +25,9 @@ int main()
 
 	People p;
 	p.set(name,			   addr);
-	p.set(std::move(name), addr);
-	p.set(name,			   std::move(addr));
-	p.set(std::move(name), std::move(addr));
+//	p.set(std::move(name), addr);
+//	p.set(name,			   std::move(addr));
+//	p.set(std::move(name), std::move(addr));
 }
 
 

@@ -12,13 +12,15 @@ private:
 	int age;
 	std::array<int, 32> data;
 public:
-	void set_name(const std::string& n) { name = n; }
-	void set_name(std::string&& n)      { name = std::move(n); }
-
 	void print_msg(const std::string& msg) const
 	{
 		std::cout << msg << std::endl;
 	}
+
+	void set_name(const std::string& n) { name = n; }
+	void set_name(std::string&& n)      { name = std::move(n); }
+
+
 	void set_data(const std::array<int, 32>& d)
 	{
 		data = d;

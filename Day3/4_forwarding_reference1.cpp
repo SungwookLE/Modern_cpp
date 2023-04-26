@@ -1,9 +1,11 @@
 
-// forwarding reference ¶õ ?
-// => "T&&" ÅÛÇÃ¸´
+// forwarding reference ëž€?
+// => "T&&" í…œí”Œë¦¿
 
 template<typename T> void chronomety(T&& a)
 {
+    
+
 }
 
 int main()

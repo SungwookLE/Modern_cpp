@@ -1,19 +1,46 @@
-// forwarding reference �̾߱�
+// forwarding reference �̾߱�
 
 template<typename T> class Test
 {
 public:
-
+	// 아래 함수의 인자가 "forwarding reference" 일까요?
+	// => 아닙니다.
+	// => 아래 코드에서 T는 함수 템플릿이 아닌 클래스 템플릿의 인자
+	// => 아래 함수는 함수 템플릿이 아닙니다. 클래스 템플릿의 일반 멤버함수
+	
 	void foo(T&& arg)
 	{
 	}
+
+	// forwarding reference가 되려면 함수 자체가 템플릿 이어야 합니다.
+	template <typename U>
+	void goo(U&& arg){
+
+	}
+
 };
+
+
 int main()
 {
 	int n = 0;
-	Test<int> t;			
+	Test<int> t;					// 이 순간 T는 int로 결정되었습니다.
+									// 따라서, foo의 모양은 "foo(int&&)"로 확정됨.
 	
-	// �Ʒ� �ڵ带 �����غ�����. ������ ������� ?
-	t.foo(n); 
-	t.foo(10); 
+	// 아래 코드를 생각해보세요. 에러가 있을까요?
+	t.foo(n); // error
+	t.foo(10); // ok
+
+	t.goo(n); // ok
+	t.goo(10); // ok
+
+	// auto&& 는 rvalue reference 일까요?
+	// forwarding reference 일까요? => 정답
+	// T&& r1 = 10
+
+	auto&& r1 = 10;// ok int&& r1 = 10
+					// auto: int, auto&& : int&&
+	auto&& r2 = n; // ok int& r2 =n
+					// auto : int&, auto&& : int& && => int&
+					
 }

@@ -40,3 +40,11 @@ int main()
 	
 }
 
+class CompilerNamed{
+	int N;
+	public:
+	CompilerNamed(int n): N(n){}
+	inline auto operator()(int a, int b) const{
+		return a+b;
+	}
+};

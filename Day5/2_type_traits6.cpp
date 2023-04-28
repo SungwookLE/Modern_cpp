@@ -5,6 +5,13 @@ int main()
 {
 	int n = 10;
 	
-	// lvalue ? rvalue Á¶»çÇÏ´Â ¹ı
+	// lvalue ? rvalue ì¡°ì‚¬í•˜ëŠ” ë²•
+	// => "n+n" ì´ rvalue ì¸ì§€ lvalue ì¸ì§€ ì•Œê³  ì‹¶ë‹¤.
+	
+	bool b1 = std::is_lvalue_reference<decltype((n+n))>::value;
+	bool b2 = std::is_lvalue_reference_v<decltype((n+n))>; // C++17
 
+	if (std::is_lvalue_reference_v<decltype((n+n))>)
+		std::cout << "lvalue" << std::endl;
 }
+

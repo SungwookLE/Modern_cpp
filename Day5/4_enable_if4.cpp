@@ -1,12 +1,36 @@
 #include <iostream>
 #include <type_traits>
 
-// ���� C++�� "Ư�� Ÿ��" �� ���� �Լ� �����ε���
-// ���� �մϴ�.
+// 현재 C++은 "특정 타입"에 따른 함수 오버로딩을 지원합니다.
 void foo(int)    {}
 void foo(double) {}
 
-// "Ÿ��"�� �ƴ� "Ư�� ������ �����ϴ� Ÿ�Ե�"�� ���� �����ε��� ������
-// ���� ������� ?
-void goo(�����Լ����ִ�Ŭ������) {}
-void goo(�����Լ�������Ŭ������) {}
+// "타입"이 아닌 "특정 조건을 만족하는 타입들"에 따른 오버로딩은 있으면 좋지 않을까요?
+//void goo(가상함수가 있는 클래스들) {}
+//void goo(가상함수가 없는 클래스들) {}
+
+
+// enable_if 기술의 핵심 : 리턴 타입 자리에 아래 코드 넣으세요.
+// enable_if_t<조건, 리턴타입>
+// => 단, 리턴 타입이 void라면 생략도 가능
+
+template<typename T>
+std::enable_if_t< !std::is_polymorphic_v<T>, void >
+goo(T a){
+    std::cout << "가상함수가 없는 타입" << std::endl;
+}
+
+template<typename T>
+std::enable_if_t< std::is_polymorphic_v<T>, void >
+goo(T a){
+    std::cout << "가상함수가 있는 타입" << std::endl;
+}
+
+class A {
+    virtual void f(){}
+};
+
+int main(){
+    A a;
+    goo(a);
+}

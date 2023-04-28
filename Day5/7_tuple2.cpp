@@ -1,4 +1,8 @@
-// Step1. °¡º¯ÀÎÀÚ ÅÛÇÃ¸´ »ç¿ë
+// Step1. ê°€ë³€ì¸ì í…œí”Œë¦¿ ì‚¬ìš©
+
+template<typename ... Types> struct tuple{
+	static constexpr int N = 0; // ì €ì¥í•˜ëŠ” ìš”ì†Œì˜ ê°œìˆ˜
+};
 
 int main()
 {

@@ -1,16 +1,26 @@
 // 4_type_traits3 - 210 page
 #include <iostream>
 
-// Ç¥ÁØ  traits ¸¦ »ç¿ëÇÏ·Á¸é
+// í•µì‹¬ 1. c++ í‘œì¤€ traits ë¥¼ ì‚¬ìš©í•˜ë ¤ë©´
 #include <type_traits>
+
+// C++14 ì—ì„œ ì•„ë˜ ì½”ë“œê°€ í‘œì¤€ì— ì¶”ê°€ë©ë‹ˆë‹¤.
+template<typename T>
+using remove_pointer_t = typename std::remove_pointer<T>::type ;
+
 
 template<typename T> void foo(T a)
 {
-	// 1. Á¶»çÇÏ·Á¸é
-	bool b1 = std::is_pointer<T>::value;
+	// í•µì‹¬ 2. ì¡°ì‚¬í•˜ë ¤ë©´ : std::is_xxx<T>:value
+	bool b1 = std::is_pointer<T>::value;	// C+11
+	bool b1 = std::is_pointer_v<T>; 		// C+17
+											// ì¼ë¶€ ì»´íŒŒì¼ëŸ¬ëŠ” C+17 ì˜µì…˜ì´ì—†ì–´ë„ ì§€ì›
 
-	// 2. º¯Çü Å¸ÀÔÀ» ¾òÀ¸·Á¸é
-	typename std::remove_pointer<T>::type n1;
+	// í•µì‹¬ 3. ë³€í˜• íƒ€ì…ì„ ì–»ìœ¼ë ¤ë©´
+	typename std::remove_pointer<T>::type n1; // C+11
+	remove_pointer_t<T> n2; // ìœ„ì™€ ë™ì¼		C+14
+
+
 }
 
 int main()

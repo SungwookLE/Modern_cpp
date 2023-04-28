@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-// Fold Expression : 가변인자 템플릿의 모든 요소에 이항 연산을 수행 - C++17
+// Fold Expression : - C++17
 
 // 1. unary right fold : ( pack op ...  ) => ( E1 op (E2 op ( E3 op E4)))
 // 2. unary left  fold : ( ...  op pack ) => (((E1 op E2) op E3) op E4)
@@ -14,12 +14,21 @@
 template<typename ... Types>
 int Sum(Types ... args)
 {
-	int s = 0;
+//	int s = (args + ...);  // unary right fold
+			// ( 1 + ( 2 + ( 3 + ( 4 + 5 ) ) ) )
+
+//	int s = (... + args); // unary left fold
+			// ((((1+2)+3)+4)+5)
+
+//	int s = ( args + ... + 0); // ((((0+1)+2)+3)+4)+(5+0))	
+
+	int s = ( 0 + ... + args); // ((((0+1)+2)+3)+4)+5)	
+
 	return s;
 }
 int main()
 {
-	int n = Sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+	int n = Sum(1, 2, 3, 4, 5);
 	std::cout << n << std::endl;
 }
 

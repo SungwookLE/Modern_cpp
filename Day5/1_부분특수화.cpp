@@ -1,12 +1,29 @@
-// 3_�κ�Ư��ȭ1 - 156 p
+// 3_�κ�Ư��ȭ1 - 156 p
 #include <iostream>
 
+// C++98 문법
 
+// primary template
 template<typename T> class Stack
 {
 public:
 	void push(T a) { std::cout << "T" << std::endl; }
 };
+
+// partial specialization(부분 특수화(전문화))
+template<typename T> class Stack<T*>
+{
+public:
+	void push(T a) { std::cout << "T*" << std::endl; }
+};
+
+// specialization(특수화(전문화))
+template<> class Stack<char*>
+{
+public:
+	void push(char* a) { std::cout << "char*" << std::endl; }
+};
+
 
 int main()
 {
